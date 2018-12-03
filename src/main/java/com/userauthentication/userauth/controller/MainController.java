@@ -20,14 +20,15 @@ public class MainController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping(value="/")
-    public String getIndex() {
+    @GetMapping(value = {"/", "/login"})
+    public String getLogin() {
         return "login";
     }
 
-    @GetMapping(value = "/login")
-    public String getLogin() {
-        return "login";
+    @GetMapping(value = "/home")
+    public String home() {
+
+        return "home";
     }
 
     @PostMapping(value = "/add")
@@ -38,20 +39,20 @@ public class MainController {
         try {
             UserDto userDto = objectMapper.readValue(userJson, UserDto.class);
             User user = new User();
-            user.setName(userDto.getName());
-            user.setEmail(userDto.getEmail());
+            user.setUsername(userDto.getUsername());
+            user.setPassword(userDto.getPassword());
             userRepository.save(user);
         } catch (IOException e) {
             e.printStackTrace();
-          return new ResponseEntity<>(e.toString(), headers, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(e.toString(), headers, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-         return  new ResponseEntity<>(userJson, headers, HttpStatus.OK);
+        return new ResponseEntity<>(userJson, headers, HttpStatus.OK);
     }
 
     @GetMapping(value = "/all")
     public @ResponseBody
     Iterable<User> getAllUsers() {
-      return userRepository.findAll();
+        return userRepository.findAll();
     }
 }

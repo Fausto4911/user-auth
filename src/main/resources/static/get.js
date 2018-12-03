@@ -47,8 +47,8 @@ $(document).ready(function () {
 
     $("#loginAuth").click(function (event) {
         console.log("login!!!");
-        var user = { name: "admin",
-        email: "la@metra.com"}
+        var user = { username: "fausto",
+        password: "123456"}
         $.ajax({
             type: "POST",
             data: JSON.stringify(user),
