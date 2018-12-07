@@ -8,19 +8,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 public class DefaultUser {
+
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
 
     @Bean
     public void defaulUser() {
         System.out.println("creating user ===");
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        User user = new User("metra",encoder.encode("password"));
-        userRepository.save(user);
-
-
-
+        if (userService.findUserByName("metra") == null) {
+            User user = new User("metra", encoder.encode("password"));
+            userService.createUser(user);
+        }
     }
 
 }

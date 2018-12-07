@@ -2,8 +2,6 @@ package com.userauthentication.userauth.domain;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -35,12 +33,9 @@ public class UserService {
     }
 
 
-    public void createUser(UserDto user) {
+    public void createUser(User user) {
         System.out.println("=== creating user ===");
-        User usr = new User();
-        usr.setUsername(user.getUsername());
-        usr.setPassword(user.getPassword());
-        userRepository.save(usr);
+        userRepository.save(user);
         System.out.println("===  user created ===");
     }
 
@@ -53,7 +48,6 @@ public class UserService {
     public void deleteUserByName(String username) {
         userRepository.deleteById(findUserByName(username).getId());
     }
-
 
 
 }

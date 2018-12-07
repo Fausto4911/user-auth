@@ -1,15 +1,11 @@
 package com.userauthentication.userauth.security;
 
-import com.userauthentication.userauth.domain.UserDto;
 import com.userauthentication.userauth.domain.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.authentication.configurers.provisioning.UserDetailsManagerConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UserDetail implements UserDetailsService {
 
@@ -28,8 +24,5 @@ public class UserDetail implements UserDetailsService {
         }
         throw new UsernameNotFoundException("User not found.");
     }
-
-
-
 
 }
