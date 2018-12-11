@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/", "/login", "/logout", "/add")
+                .antMatchers("/", "/login", "/logout", "/add","/test","/webjars/**")
                 .permitAll();
 
 
@@ -50,6 +50,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")//
                 .passwordParameter("password")
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login");
+
+
+
 
     }
 

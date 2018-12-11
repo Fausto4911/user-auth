@@ -30,6 +30,11 @@ public class MainController {
         return "home";
     }
 
+    @GetMapping(value = "/test")
+    public String test() {
+        return "test";
+    }
+
     @PostMapping(value = "/add")
     public ResponseEntity<String> addNewUser(@RequestBody String userJson) {
         HttpHeaders headers = new HttpHeaders();
