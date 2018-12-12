@@ -3,31 +3,69 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>Spring Security Example </title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link rel="stylesheet"
-          href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css" />
+          href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../static/css/login-box.css" th:ref="@{/css/login-box.css}">
 
 
     <script src="/post.js"></script>
     <script src="/get.js"></script>
 </head>
-<body>
-<div th:if="${param.error}">
-    Invalid username and password.
+<body class="body">
+
+<div class="container loginbox">
+    <div class="jumbotron text-center">
+        <h1>Login Page</h1>
+
+    </div>
+    <div class="alert alert-danger" th:if="${param.error}">
+        Invalid username and password.
+    </div>
+    <div class="alert alert-warning" th:if="${param.logout}">
+        You have been logged out.
+    </div>
+
+
+    <form th:action="@{/login}" method="post" class="padding">
+        <div class="input-group padding">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input id="username" type="text" class="form-control" name="username" placeholder="Email">
+        </div>
+        <div class="input-group padding">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+        <div class="input-group padding">
+            <button type="submit" class="btn btn-primary">Sign In</button>
+        </div>
+    </form>
+
 </div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
-<div class="container">
-<button id="loginAuth" type="button" class="btn btn-primary">Authenticate</button>
-</div>
+
+<style>
+    .body {
+        background-color: lightgray;
+    }
+
+    .loginbox {
+
+        margin: auto;
+        width: 30%;
+        /*border: 3px solid green;*/
+        padding: 10px;
+        background-color: white;
+
+    }
+
+    .padding {
+        /*border: 1px solid blue;*/
+        background-color: white;
+        padding: 8px;
+    }
+</style>
 </body>
 </html>
